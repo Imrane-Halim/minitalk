@@ -40,7 +40,7 @@ int	main(int ac, char **av)
 {
 	int	pid;
 
-	if (ac < 3 || ac > 3)
+	if (ac != 3)
 		error("\nError: the client takes only 3 params: PID and a String\n");
 	pid = ft_atoi(av[1]);
 	if (pid == 0)
