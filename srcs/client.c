@@ -31,13 +31,8 @@ int send_byte(int pid, char c)
 
 int	send_string(int pid, char *string)
 {
-	int i;
-	i = 0;
-	while (string[i] != '\0')
-	{
-		send_byte(pid, string[i]);
-		i++;
-	}
+	while (*string != '\0')
+		send_byte(pid, *string++);
 	send_byte(pid, '\0');
 }
 
