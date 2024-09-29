@@ -3,13 +3,10 @@
 void    to_string(int sig)
 {
     static short    current_bit;
-    static char     c;
+    static int     c;
 
     if (sig == SIGUSR1)
-        c |= (1 << current_bit);
-    else if (sig == SIGUSR2)
-        c &= ~(1 << current_bit);
-
+        c |= (1 << current_bit);  
     current_bit++;
     if (current_bit == 8)
     {
