@@ -10,8 +10,6 @@ A small data exchange program using UNIX signals 📡
 * [Features](#features)
 * [Usage](#usage)
 * [Compilation](#compilation)
-* [Testing](#testing)
-* [Authors](#authors)
 
 ## Introduction
 ------------
