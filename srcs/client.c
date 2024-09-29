@@ -23,7 +23,7 @@ int send_byte(int pid, char c)
 			send_signal(pid, SIGUSR1);
 		else
 			send_signal(pid, SIGUSR2);
-		usleep(500);
+		usleep(2000);
 		current_bit++;
 	}
 	
@@ -31,9 +31,14 @@ int send_byte(int pid, char c)
 
 int	send_string(int pid, char *string)
 {
-	while (*string != '\0')
-		send_byte(pid, *string++);
-	ft_printf("String was Sent Succesfully :D\n");
+	int i;
+	i = 0;
+	while (string[i] != '\0')
+	{
+		send_byte(pid, string[i]);
+		i++;
+	}
+	send_byte(pid, '\0');
 }
 
 int	main(int ac, char **av)
