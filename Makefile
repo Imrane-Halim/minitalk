@@ -1,24 +1,29 @@
 INC		= inc.h
 FLAGS	= -Wall -Wextra -Werror
 LIBFT	= ./libft/libft.a
+PRINTF	= ./libft/printf/libftprintf.a
 
 all: client server
 
-client: ./srcs/client.o
+client: ./src/client.o ./src/utils.o
 	$(MAKE) -C ./libft
-	$(CC) $(FLAGS) ./srcs/client.o $(LIBFT) -fsanitize=leak -I INC -o client
+	$(MAKE) -C ./libft/printf
+	$(CC) $(FLAGS) ./src/client.o ./src/utils.o $(LIBFT) $(PRINTF) -o client
 
-server: ./srcs/server.o
+server: ./src/server.o ./src/utils.o
 	$(MAKE) -C ./libft
-	$(CC) $(FLAGS) ./srcs/server.o $(LIBFT) -fsanitize=leak -I INC -o server
+	$(MAKE) -C ./libft/printf
+	$(CC) $(FLAGS) ./src/server.o ./src/utils.o $(LIBFT) $(PRINTF) -o server
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	$(MAKE) clean -C ./libft
-	$(RM) ./srcs/*.o
+	$(MAKE) clean -C ./libft/printf
+	$(RM) ./src/*.o
 
 fclean: clean
 	$(MAKE) fclean -C ./libft
+	$(MAKE) fclean -C ./libft/printf
 	$(RM) client server

@@ -1,16 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 10:32:08 by ihalim            #+#    #+#             */
-/*   Updated: 2024/10/22 10:32:09 by ihalim           ###   ########.fr       */
+/*   Created: 2024/11/28 19:01:08 by ihalim            #+#    #+#             */
+/*   Updated: 2024/11/28 19:01:18 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(int c)
+#include "../inc.h"
+
+void	error(char *msg)
 {
-	return (c >= '0' && c <= '9');
+	ft_putstr_fd(msg, STDERR_FILENO);
+	exit(EXIT_FAILURE);
+}
+
+void	send_signal(int pid, int sig)
+{
+	if (kill(pid, sig) != 0)
+		error("\nError sending the signal!\n");
 }

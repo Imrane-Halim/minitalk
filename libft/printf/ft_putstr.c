@@ -1,16 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 10:32:08 by ihalim            #+#    #+#             */
-/*   Updated: 2024/10/22 10:32:09 by ihalim           ###   ########.fr       */
+/*   Created: 2024/11/04 18:09:21 by ihalim            #+#    #+#             */
+/*   Updated: 2024/11/28 18:41:58 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(int c)
+#include "ft_printf.h"
+
+static size_t	ft_strlen(const char *s)
 {
-	return (c >= '0' && c <= '9');
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
+int	ft_putstr(char *s)
+{
+	if (s == NULL)
+		return (write(1, "(null)", 6));
+	return (write(1, s, ft_strlen(s)));
 }
